@@ -19,5 +19,6 @@ void createDirectory(const char *path);
 void compressFile(const char *inputFilePath, const char *outputDir, int index);
 void cleanup(char **filesList);
 void compressSequentially(char *inputDir, char *outputDir);
+void formatTime(double totalTime);
 
 #endif // HEADERS_H

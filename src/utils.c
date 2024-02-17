@@ -90,3 +90,9 @@ void cleanup(char **filesList) {
     }
     free(filesList); // Free the array of pointers itself
 }
+
+void formatTime(double totalTime) {
+    int minutes = (int)totalTime / 60; // Calculate total minutes
+    int seconds = (int)totalTime % 60; // Calculate remaining seconds
+    printf("%d minutes %d seconds\n", minutes, seconds);
+}
