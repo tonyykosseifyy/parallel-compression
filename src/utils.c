@@ -67,12 +67,12 @@ int directoryExists(const char *path) {
     return S_ISDIR(statbuf.st_mode);
 }
 
-// Function to create a directory
+
 void createDirectory(const char *path) {
     mkdir(path, 0755); // Creates a directory with read/write/execute permissions for owner, and read/execute permissions for group and others
 }
 
-// Function to compress a file using gzip, outputting to a specified directory
+
 void compressFile(const char *filePath, const char *outputDir, int index) {
     char command[1024];
     // Construct the command with a sequential filename based on the index
@@ -81,7 +81,6 @@ void compressFile(const char *filePath, const char *outputDir, int index) {
 }
 
 
-// Cleanup Function 
 void cleanup(char **filesList) {
     char **temp = filesList;
     while (*temp != NULL) {
