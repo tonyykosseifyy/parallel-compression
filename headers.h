@@ -7,4 +7,4 @@
 
 int getNumCPUs();
 int countFiles(const char *folderPath);
-char ** listFiles(const char *folderPath);
+char ** listFiles(const char *folderPath); 
