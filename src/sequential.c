@@ -8,6 +8,7 @@ void compressSequentially(char *inputDir, char *outputDir) {
     gettimeofday(&startTime, NULL);
 
     printf("Compressing files\n[");
+    
     for (int i = 0; i < fileCount; i++) {
         compressFile(filesList[i], outputDir, i);
 

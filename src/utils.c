@@ -92,7 +92,7 @@ void cleanup(char **filesList) {
 }
 
 void formatTime(double totalTime) {
-    int minutes = (int)totalTime / 60; // Calculate total minutes
-    int seconds = (int)totalTime % 60; // Calculate remaining seconds
+    int minutes = (int)totalTime / 60;
+    int seconds = (int)totalTime % 60; 
     printf("%d minutes %d seconds\n", minutes, seconds);
 }
