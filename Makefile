@@ -1,18 +1,30 @@
 CC=gcc
 CFLAGS=-Iinclude
-DEPS = include/headers.h
-OBJ = obj/main.o obj/utils.o
+SRC_DIR=src
+BIN_DIR=bin
+OBJ_DIR=obj
 
-# Rule to generate object files; depends on source files and header files
-obj/%.o: src/%.c $(DEPS)
-	$(CC) -c -o $@ $< $(CFLAGS)
+# Define source files and object files
+SRCS=$(SRC_DIR)/main.c $(SRC_DIR)/sequential.c $(SRC_DIR)/utils.c
+OBJS=$(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-# Rule to link object files into an executable
-bin/program: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+# Target executable name
+TARGET=$(BIN_DIR)/program
 
-.PHONY: clean
+# Default target
+all: $(TARGET)
 
-# Clean command to remove object files and the executable
+# Link object files into a binary
+$(TARGET): $(OBJS)
+	$(CC) $^ -o $@
+
+# Compile source files into object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean up compiled files
 clean:
-	rm -f obj/*.o bin/program
+	rm -rf $(BIN_DIR)/* $(OBJ_DIR)/*
+
+.PHONY: all clean

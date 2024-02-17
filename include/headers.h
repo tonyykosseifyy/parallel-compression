@@ -1,3 +1,6 @@
+#ifndef HEADERS_H
+#define HEADERS_H
+
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
@@ -15,3 +18,6 @@ int directoryExists(const char *path);
 void createDirectory(const char *path);
 void compressFile(const char *inputFilePath, const char *outputDir);
 void cleanup(char **filesList);
+void compressSequentially(char *inputDir, char *outputDir);
+
+#endif // HEADERS_H

@@ -1,29 +1,12 @@
 #include "headers.h"
 
 
-
-int main(int argc, char **argv) {
-    if (argc < 3) {
-        fprintf(stderr, "Usage: %s <input directory path> <output directory path>\n", argv[0]);
-        return 1;
-    }
-
-    // Check input directory exists
-    if (!directoryExists(argv[1])) {
-        fprintf(stderr, "Input directory does not exist.\n");
-        return 1;
-    }
-
-    // Check output directory exists; if not, create it
-    if (!directoryExists(argv[2])) {
-        createDirectory(argv[2]);
-        printf("Output directory created.\n");
-    }
-
-    char **filesList = listFiles(argv[1]);
+void compressSequentially(char *inputDir, char *outputDir) {
+    // Assuming listFiles returns a dynamically allocated list of file names from the input directory
+    char **filesList = listFiles(inputDir);
     if (filesList == NULL) {
-        fprintf(stderr, "Failed to list files in directory %s\n", argv[1]);
-        return 1;
+        fprintf(stderr, "Failed to list files in directory %s\n", inputDir);
+        return;
     }
 
     struct timeval startTime, endTime;
@@ -34,7 +17,9 @@ int main(int argc, char **argv) {
         // Simple loader effect
         printf("."); fflush(stdout);
 
-        compressFile(*currentFile, argv[2]);
+        // Assuming compressFile is a function that takes the full path to an input file
+        // and the directory where the compressed file should be saved
+        compressFile(*currentFile, outputDir);
     }
     printf("\nDone.\n");
 
@@ -42,11 +27,6 @@ int main(int argc, char **argv) {
     double totalTime = (double)(endTime.tv_sec - startTime.tv_sec) + (double)(endTime.tv_usec - startTime.tv_usec) / 1000000.0;
     printf("Total time taken to compress all files: %.2f seconds\n", totalTime);
 
-    // Cleanup
-    for (char **file = filesList; *file != NULL; file++) {
-        free(*file);
-    }
-    free(filesList);
-
-    return 0;
+    // Assuming cleanup is intended to free the memory allocated for the list of file names
+    cleanup(filesList); // Updated to use the correct function name
 }

@@ -1,23 +1,24 @@
 #include "headers.h"
 
+
 int main(int argc, char **argv) {
-
-    printf("you have %d cores on your machine\n", getNumCPUs());
-
-    if (argc<2){
-        printf("provide a folder name after the command to test file listing\n");
-        exit(0);
+    if (argc < 3) {
+        fprintf(stderr, "Usage: %s <input directory path> <output directory path>\n", argv[0]);
+        return 1;
     }
 
-    // we supose that the program take a command line parameter to pass folder name containing data files
-    char **filesList = listFiles(argv[1]);
-
-    // here we are just listing files name, the list is terminated with a NULL marker
-    while (*filesList != NULL)
-    {
-        printf("%s\n", *filesList);
-        filesList++;
+    // Check input directory exists
+    if (!directoryExists(argv[1])) {
+        fprintf(stderr, "Input directory does not exist.\n");
+        return 1;
     }
+
+    // Check output directory exists; if not, create it
+    if (!directoryExists(argv[2])) {
+        createDirectory(argv[2]);
+        printf("Output directory created.\n");
+    }
+
 
     return 0;
 }
