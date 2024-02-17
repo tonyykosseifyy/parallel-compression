@@ -73,9 +73,10 @@ void createDirectory(const char *path) {
 }
 
 // Function to compress a file using gzip, outputting to a specified directory
-void compressFile(const char *inputFilePath, const char *outputDir) {
+void compressFile(const char *filePath, const char *outputDir, int index) {
     char command[1024];
-    snprintf(command, sizeof(command), "gzip -c %s > %s/%s.gz", inputFilePath, outputDir, basename(inputFilePath));
+    // Construct the command with a sequential filename based on the index
+    snprintf(command, sizeof(command), "gzip -c \"%s\" > \"%s/meteo%d.gz\"", filePath, outputDir, index);
     system(command);
 }
 

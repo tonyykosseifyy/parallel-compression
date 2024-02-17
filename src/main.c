@@ -19,6 +19,8 @@ int main(int argc, char **argv) {
         printf("Output directory created.\n");
     }
 
+    compressSequentially(argv[1], argv[2]);
+
 
     return 0;
 }
