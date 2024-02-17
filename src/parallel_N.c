@@ -25,7 +25,7 @@ void compressionNThreads(char *inputDir, const char *outputDir) {
     struct timeval startTime, endTime;
     gettimeofday(&startTime, NULL);
 
-    printf("Compressing files - 2 at a time\n[");
+    printf("Compressing with N Threads files\n[");
 
 
     for (int i = 0; i < totalFiles; ++i) {
