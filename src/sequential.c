@@ -1,7 +1,7 @@
 #include "headers.h"
 
 
-// Main program
+
 int main(int argc, char **argv) {
     if (argc < 3) {
         fprintf(stderr, "Usage: %s <input directory path> <output directory path>\n", argv[0]);

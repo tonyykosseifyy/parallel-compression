@@ -78,3 +78,14 @@ void compressFile(const char *inputFilePath, const char *outputDir) {
     snprintf(command, sizeof(command), "gzip -c %s > %s/%s.gz", inputFilePath, outputDir, basename(inputFilePath));
     system(command);
 }
+
+
+// Cleanup Function 
+void cleanup(char **filesList) {
+    char **temp = filesList;
+    while (*temp != NULL) {
+        free(*temp); // Free each string
+        temp++;
+    }
+    free(filesList); // Free the array of pointers itself
+}
