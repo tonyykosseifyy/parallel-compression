@@ -18,7 +18,7 @@ void compressSequentially(char *inputDir, char *outputDir) {
 
     gettimeofday(&endTime, NULL);
     
-    double totalTime = (double)(endTime.tv_sec - startTime.tv_sec) + (double)(endTime.tv_usec - startTime.tv_usec) / 1000000.0;
+    double totalTime = (double)(endTime.tv_sec - startTime.tv_sec);
     
     printf("Total time taken to compress all files: ");
     formatTime(totalTime);
