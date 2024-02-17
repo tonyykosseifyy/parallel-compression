@@ -50,10 +50,8 @@ char **listFiles(const char *folderPath)
     int fileIndex = 0;
     char *full_file_name;
 
-    while ((entry = readdir(dir)) != NULL)
-    {
-        if (entry->d_type == DT_REG)
-        {
+    while ((entry = readdir(dir)) != NULL) {
+        if (entry->d_type == DT_REG) {
             full_file_name = malloc((strlen(folderPath) + strlen(entry->d_name) + 5) * sizeof(char));
             sprintf(full_file_name, "\"%s/%s\"", folderPath, entry->d_name);
             filesList[fileIndex++] = full_file_name;

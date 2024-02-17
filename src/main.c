@@ -1,7 +1,6 @@
 #include "headers.h"
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv) {
 
     printf("you have %d cores on your machine\n", getNumCPUs());
 
