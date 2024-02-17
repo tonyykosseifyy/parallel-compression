@@ -20,7 +20,8 @@ int main(int argc, char **argv) {
     }
 
     // compressSequentially(argv[1], argv[2]);
-    parallel_2(argv[1], argv[2]);
-
+    // parallel_2(argv[1], argv[2]);
+    compressionNThreads(argv[1], argv[2]);
+    
     return 0;
 }

@@ -1,44 +1,58 @@
 #include "headers.h" 
 
 typedef struct {
-    char **filesList;
-    int startIdx;
-    int endIdx;
+    const char *filePath;
     const char *outputDir;
+    int index;
 } ThreadArgs;
 
-void *compressFiles(void *args) {
+void *compressFileTask(void *args) {
     ThreadArgs *threadArgs = (ThreadArgs *)args;
-    for (int i = threadArgs->startIdx; i < threadArgs->endIdx; ++i) {
-        compressFile(threadArgs->filesList[i], threadArgs->outputDir, i);
-    }
+    compressFile(threadArgs->filePath, threadArgs->outputDir, threadArgs->index);
+
+    printf("."); fflush(stdout);
+
     return NULL;
 }
 
-void startNThreadCompression(char **filesList, int totalFiles, const char *outputDir, int N) {
-    pthread_t *threads = (pthread_t *)malloc(N * sizeof(pthread_t));
-    ThreadArgs *args = (ThreadArgs *)malloc(N * sizeof(ThreadArgs));
+void compressionNThreads(char *inputDir, const char *outputDir) {
+    int totalFiles = countFiles(inputDir);
+    char **filesList = listFiles(inputDir);
+    
+    pthread_t *threads = (pthread_t *)malloc(totalFiles * sizeof(pthread_t));
+    ThreadArgs *args = (ThreadArgs *)malloc(totalFiles * sizeof(ThreadArgs));
 
-    int filesPerThread = totalFiles / N;
-    int remainingFiles = totalFiles % N; // Remaining files after equally dividing
+    struct timeval startTime, endTime;
+    gettimeofday(&startTime, NULL);
 
-    for (int i = 0; i < N; ++i) {
-        args[i].filesList = filesList;
-        args[i].startIdx = i * filesPerThread + (i < remainingFiles ? i : remainingFiles);
-        args[i].endIdx = args[i].startIdx + filesPerThread + (i < remainingFiles ? 1 : 0);
+    printf("Compressing files - 2 at a time\n[");
+
+
+    for (int i = 0; i < totalFiles; ++i) {
+        args[i].filePath = filesList[i];
         args[i].outputDir = outputDir;
+        args[i].index = i;
 
-        if (pthread_create(&threads[i], NULL, compressFiles, (void *)&args[i])) {
-            fprintf(stderr, "Error creating thread #%d\n", i);
+        if (pthread_create(&threads[i], NULL, compressFileTask, (void *)&args[i])) {
+            fprintf(stderr, "Error: could not create thread for file %s\n", filesList[i]);
             exit(EXIT_FAILURE);
         }
     }
 
-    // Wait for all threads to finish
-    for (int i = 0; i < N; ++i) {
+    for (int i = 0; i < totalFiles; ++i) {
         pthread_join(threads[i], NULL);
     }
+    printf("]\nCompression Finished.\n");
 
+    gettimeofday(&endTime, NULL);
+    
+    double totalTime = (double)(endTime.tv_sec - startTime.tv_sec);
+    
+    printf("Total time taken to compress all files: ");
+    formatTime(totalTime);
+
+    // Cleanup
     free(threads);
     free(args);
+    cleanup(filesList);
 }

@@ -95,3 +95,4 @@ void formatTime(double totalTime) {
     int seconds = (int)totalTime % 60; 
     printf("%d minutes %d seconds\n", minutes, seconds);
 }
+
