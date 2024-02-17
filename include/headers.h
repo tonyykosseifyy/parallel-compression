@@ -3,6 +3,8 @@
 #include <time.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/time.h>
 
 
 int getNumCPUs();

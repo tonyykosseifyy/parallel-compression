@@ -1,8 +1,5 @@
-#include <stdio.h>
-#include <unistd.h>
 #include <dirent.h>
-#include <string.h>
-#include <stdlib.h>
+#include "headers.h"
 
 int getNumCPUs()
 {
@@ -60,4 +57,24 @@ char **listFiles(const char *folderPath)
     filesList[fileIndex] = NULL;
     closedir(dir);
     return filesList;
+}
+
+ // Function to check if a directory exists
+int directoryExists(const char *path) {
+    struct stat statbuf;
+    if (stat(path, &statbuf) != 0)
+        return 0;
+    return S_ISDIR(statbuf.st_mode);
+}
+
+// Function to create a directory
+void createDirectory(const char *path) {
+    mkdir(path, 0755); // Creates a directory with read/write/execute permissions for owner, and read/execute permissions for group and others
+}
+
+// Function to compress a file using gzip, outputting to a specified directory
+void compressFile(const char *inputFilePath, const char *outputDir) {
+    char command[1024];
+    snprintf(command, sizeof(command), "gzip -c %s > %s/%s.gz", inputFilePath, outputDir, basename(inputFilePath));
+    system(command);
 }
