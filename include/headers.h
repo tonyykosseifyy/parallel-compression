@@ -10,8 +10,9 @@
 #include <sys/time.h>
 #include <libgen.h> 
 #include <pthread.h>
+#include "compressions.h"
 
-// global functions
+
 int getNumCPUs();
 int countFiles(const char *folderPath);
 char ** listFiles(const char *folderPath); 
@@ -21,11 +22,4 @@ void compressFile(const char *inputFilePath, const char *outputDir, int index);
 void cleanup(char **filesList);
 void formatTime(double totalTime);
 
-// compression techniques
-void compressSequentially(char *inputDir, char *outputDir);
-void compressionNProcesses(char *inputDir, const char *outputDir);
-void compressWithNBCores(const char *inputDir, const char *outputDir);
-void compressInBatches(char *inputDir, const char *outputDir);
-
-
-#endif // HEADERS_H
+#endif 
