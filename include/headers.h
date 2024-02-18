@@ -23,7 +23,7 @@ void formatTime(double totalTime);
 
 // compression techniques
 void compressSequentially(char *inputDir, char *outputDir);
-void parallel_2(char *inputDir, char *outputDir);
 void compressionNProcesses(char *inputDir, const char *outputDir);
+void compressWithNBCores(const char *inputDir, const char *outputDir);
 
 #endif // HEADERS_H
