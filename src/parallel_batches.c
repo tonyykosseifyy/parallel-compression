@@ -1,13 +1,6 @@
 #include "headers.h" 
 
-
-
-void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir) {
-    for (int i = startIdx; i < endIdx; ++i) {
-        compressFile(filesList[i], outputDir, i);
-    }
-}
-
+void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir)
 
 void compressInBatches(char **filesList, int totalFiles, const char *outputDir) {
     int NB_CORES = sysconf(_SC_NPROCESSORS_ONLN); // Get the number of CPU cores
@@ -30,4 +23,10 @@ void compressInBatches(char **filesList, int totalFiles, const char *outputDir) 
 
     // Wait for all child processes to complete
     while (wait(NULL) > 0);
+}
+
+void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir) {
+    for (int i = startIdx; i < endIdx; ++i) {
+        compressFile(filesList[i], outputDir, i);
+    }
 }
