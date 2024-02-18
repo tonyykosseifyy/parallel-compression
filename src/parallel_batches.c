@@ -1,9 +1,13 @@
 #include "headers.h" 
 
-void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir)
+void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir);
 
-void compressInBatches(char **filesList, int totalFiles, const char *outputDir) {
+void compressInBatches(char *inputDir, const char *outputDir) {
+    int totalFiles = countFiles(inputDir);
+    char **filesList = listFiles(inputDir);
+
     int NB_CORES = sysconf(_SC_NPROCESSORS_ONLN); // Get the number of CPU cores
+    
     int filesPerCore = totalFiles / NB_CORES;
     int extraFiles = totalFiles % NB_CORES; // Extra files to distribute
 
