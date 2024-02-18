@@ -14,7 +14,7 @@ void compressSequentially(char *inputDir, char *outputDir) {
         compressFile(filesList[i], outputDir, i);
     }
 
-    printf("\nCompression Finished.\n");
+    printf("Compression Finished.\n");
 
     gettimeofday(&endTime, NULL);
     

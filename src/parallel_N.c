@@ -29,16 +29,15 @@ void compressionNProcesses(char *inputDir, const char *outputDir) {
         waitpid(pids[i], NULL, 0);
     }
 
-    printf("\nCompression Finished.\n");
+    printf("Compression Finished.\n");
     gettimeofday(&endTime, NULL);
 
     double totalTime = (double)(endTime.tv_sec - startTime.tv_sec);
     printf("Total time taken to compress all files: ");
-    formatTime(totalTime); // Ensure you have a function to format and print the time
+    formatTime(totalTime); 
 
     // Cleanup
     free(pids);
-    cleanup(filesList); // Ensure this function frees the file list appropriately
+    cleanup(filesList); 
 }
 
-// Make sure to adjust or implement compressFile and cleanup functions as necessary.
