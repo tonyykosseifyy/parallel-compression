@@ -7,9 +7,14 @@ void compressInBatches(char *inputDir, const char *outputDir) {
     char **filesList = listFiles(inputDir);
 
     int NB_CORES = sysconf(_SC_NPROCESSORS_ONLN); // Get the number of CPU cores
-    
+
     int filesPerCore = totalFiles / NB_CORES;
     int extraFiles = totalFiles % NB_CORES; // Extra files to distribute
+
+    struct timeval startTime, endTime;
+    gettimeofday(&startTime, NULL);
+
+    printf("Compressing with N Processes files\n");
 
     for (int i = 0; i < NB_CORES; ++i) {
         pid_t pid = fork();
@@ -27,6 +32,17 @@ void compressInBatches(char *inputDir, const char *outputDir) {
 
     // Wait for all child processes to complete
     while (wait(NULL) > 0);
+
+
+    printf("Compression Finished.\n");
+    gettimeofday(&endTime, NULL);
+
+    double totalTime = (double)(endTime.tv_sec - startTime.tv_sec);
+    printf("Total time taken to compress all files: ");
+    formatTime(totalTime);
+
+    cleanup(filesList);
+
 }
 
 void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir) {

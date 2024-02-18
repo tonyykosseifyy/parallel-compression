@@ -25,5 +25,7 @@ void formatTime(double totalTime);
 void compressSequentially(char *inputDir, char *outputDir);
 void compressionNProcesses(char *inputDir, const char *outputDir);
 void compressWithNBCores(const char *inputDir, const char *outputDir);
+void compressInBatches(char *inputDir, const char *outputDir);
+
 
 #endif // HEADERS_H
