@@ -1,14 +1,5 @@
 #include "headers.h"
 
-int compressWithNForks(const char *folderPath, const char *outputDir);
-
-void compressFile1(const char *filePath, int index, const char *outputDir) {
-    char command[256]; // Increased buffer size for command
-    // Construct command with proper formatting for index and filePath
-    sprintf(command, "gzip -c \"%s\" > \"%s/meteo%d.gz\"", filePath, outputDir, index);
-    system(command);
-}
-
 
 int main(int argc, char **argv) {
     if (argc < 3) {
