@@ -31,9 +31,10 @@ int main(int argc, char **argv) {
     int fileCount = countFiles(argv[1]);
     char **fileList = listFiles(argv[1]);
 
-    // compressSequentially(argv[1], argv[2]);
-    compressionNProcesses(argv[1], argv[2]);
+    // compressSequentially(argv[1], argv[2]); // 1 minutes 45 seconds 130 files
+    // compressionNProcesses(argv[1], argv[2]); 33 seconds 130 files 
 
+    
     return 0;
 }
 
