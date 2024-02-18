@@ -8,7 +8,7 @@ void compressionNProcesses(char *inputDir, const char *outputDir) {
     struct timeval startTime, endTime;
     gettimeofday(&startTime, NULL);
 
-    printf("Compressing with N Processes files\n");
+    printf("Compressing with N Processes\n");
 
     pid_t *pids = (pid_t *)malloc(totalFiles * sizeof(pid_t));
     for (int i = 0; i < totalFiles; ++i) {
