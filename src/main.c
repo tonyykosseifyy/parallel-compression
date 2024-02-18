@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
 
     // compressSequentially(argv[1], argv[2]); // 1 minutes 45 seconds 130 files
     // compressionNProcesses(argv[1], argv[2]); 33 seconds 130 files 
-
+    // compressWithNBCores(argv[1], argv[2]);  19 seconds 130 files
 
     return 0;
 }

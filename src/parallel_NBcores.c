@@ -21,13 +21,26 @@ void compressWithNBCores(const char *inputDir, const char *outputDir) {
     int fileCount = countFiles(inputDir);
     char **filesList = listFiles(inputDir);
     
-
     int NB_CORES = sysconf(_SC_NPROCESSORS_ONLN); // Number of cores
+
+
+    struct timeval startTime, endTime;
+    gettimeofday(&startTime, NULL);
+
+    printf("Compressing with NB_CORES = %d\n", NB_CORES);
+
 
     for (int i = 0; i < fileCount; i += NB_CORES) {
         int endIdx = i + NB_CORES < fileCount ? i + NB_CORES : fileCount;
         compressBatch(filesList, i, endIdx, outputDir);
     }
+
+    printf("Compression Finished.\n");
+    gettimeofday(&endTime, NULL);
+
+    double totalTime = (double)(endTime.tv_sec - startTime.tv_sec);
+    printf("Total time taken to compress all files: ");
+    formatTime(totalTime); 
 
     // Cleanup
     cleanup(filesList); // Assuming cleanup properly frees the filesList
