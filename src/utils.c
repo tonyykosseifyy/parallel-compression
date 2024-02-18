@@ -26,8 +26,7 @@ int countFiles(const char *folderPath)
     return count;
 }
 
-char **listFiles(const char *folderPath)
-{
+char **listFiles(const char *folderPath) {
     DIR *dir;
     struct dirent *entry;
     char **filesList;
@@ -75,7 +74,6 @@ void createDirectory(const char *path) {
 
 void compressFile(const char *filePath, const char *outputDir, int index) {
     char command[1024];
-    // Construct the command with a sequential filename based on the index
     snprintf(command, sizeof(command), "gzip -c \"%s\" > \"%s/meteo%d.gz\"", filePath, outputDir, index);
     system(command);
 }
