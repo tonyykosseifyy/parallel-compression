@@ -31,7 +31,7 @@ int main(int argc, char **argv) {
     int fileCount = countFiles(argv[1]);
     char **fileList = listFiles(argv[1]);
 
-    compressWithNForks(argv[1], argv[2]);
+    compressSequentially(argv[1], argv[2]);
 
     return 0;
 }
