@@ -3,19 +3,19 @@
 void compressSequentially(char *inputDir, char *outputDir) {
     char **filesList = listFiles(inputDir);
     int fileCount = countFiles(inputDir);
+    printf('file count is %d\n', fileCount);
+
 
     struct timeval startTime, endTime;
     gettimeofday(&startTime, NULL);
 
-    printf("Compressing files\n[");
+    printf("Compressing files Sequentially\n");
     
     for (int i = 0; i < fileCount; i++) {
         compressFile(filesList[i], outputDir, i);
-
-        printf("."); fflush(stdout);
     }
 
-    printf("]\nCompression Finished.\n");
+    printf("\nCompression Finished.\n");
 
     gettimeofday(&endTime, NULL);
     
