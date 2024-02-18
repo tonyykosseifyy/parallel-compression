@@ -1,6 +1,6 @@
-#include "headers.h" // Ensure this contains prototypes for necessary functions.
+#include "headers.h" 
 
-void compressFilesInSegments(const char *inputDir, const char *outputDir) {
+void compressFilesInBatches(const char *inputDir, const char *outputDir) {
     int totalFiles = countFiles(inputDir);
     char **filesList = listFiles(inputDir);
     if (!filesList) {
@@ -38,13 +38,3 @@ void compressFilesInSegments(const char *inputDir, const char *outputDir) {
     cleanup(filesList); // Assuming cleanup properly frees the fileList
 }
 
-int main(int argc, char **argv) {
-    if (argc < 3) {
-        fprintf(stderr, "Usage: %s <input directory path> <output directory path>\n", argv[0]);
-        return EXIT_FAILURE;
-    }
-
-    compressFilesInSegments(argv[1], argv[2]);
-
-    return EXIT_SUCCESS;
-}
