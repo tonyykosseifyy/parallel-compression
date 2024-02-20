@@ -138,3 +138,17 @@ void visualizePerformanceLineChart() {
         "plot './results/techniques/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
     system(gnuplotCommand);
 }
+
+void visualizeCoresPerformance() {
+    char *gnuplotCommand = "gnuplot -e \""
+        "set terminal png size 800,600; "
+        "set output './results/cores/compression_performance.png'; "
+        "set title 'Compression Performance'; "
+        "set xlabel 'Number of Cores'; "
+        "set ylabel 'Time (Seconds)'; "
+        "set boxwidth 0.5; " 
+        "set style fill solid; "
+        "plot './results/cores/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
+
+    system(gnuplotCommand);
+}

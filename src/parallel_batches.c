@@ -64,12 +64,11 @@ void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const cha
 
 
 char* concat(int NB_CORES) {
-    char cores_str[] = " cores";
     // Calculate needed size (+1 for null terminator)
-    int size = snprintf(NULL, 0, "%d%s", NB_CORES, cores_str) + 1;
+    int size = snprintf(NULL, 0, "%d", NB_CORES) + 1;
     char *result = malloc(size); // Allocate memory
     if (result != NULL) { // Check allocation success
-        snprintf(result, size, "%d%s", NB_CORES, cores_str);
+        snprintf(result, size, "%d", NB_CORES);
     }
     return result;
 }
