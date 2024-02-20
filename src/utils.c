@@ -91,11 +91,25 @@ void cleanup(char **filesList) {
 void formatTime(double totalTime) {
     int minutes = (int)totalTime / 60;
     int seconds = (int)totalTime % 60; 
-    printf("%d minutes %d seconds\n", minutes, seconds);
+    printf("%d minutes %d seconds\n\n", minutes, seconds);
 }
 
 void writePerformance(char *techniqueName, double totalTime) {
     FILE *file = fopen("performance.txt", "a");
     fprintf(file, "%s: %f\n", techniqueName, totalTime);
     fclose(file);
+}
+
+void visualizePerformance() {
+    char *gnuplotCommand = "gnuplot -e \""
+        "set terminal png size 800,600; "
+        "set output 'compression_performance.png'; "
+        "set title 'Compression Performance'; "
+        "set xlabel 'Compression Technique'; "
+        "set ylabel 'Time (Seconds)'; "
+        "set style data histograms; "
+        "set style fill solid; "
+        "plot 'compression_data.txt' using 2:xtic(1) title 'Time';\"";
+
+    system(gnuplotCommand);
 }
