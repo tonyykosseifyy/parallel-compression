@@ -2,11 +2,11 @@
 
 void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir);
 
-void compressInBatches(char *inputDir, const char *outputDir) {
+void compressInBatches(char *inputDir, const char *outputDir, int NB_CORES) {
     int totalFiles = countFiles(inputDir);
     char **filesList = listFiles(inputDir);
 
-    int NB_CORES = sysconf(_SC_NPROCESSORS_ONLN); // Get the number of CPU cores
+    NB_CORES =  NB_CORES != 0 ? NB_CORES : sysconf(_SC_NPROCESSORS_ONLN);
 
     int filesPerCore = totalFiles / NB_CORES;
     int extraFiles = totalFiles % NB_CORES; // Extra files to distribute

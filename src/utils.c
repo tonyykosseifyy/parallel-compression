@@ -114,13 +114,13 @@ void clearPerformanceFile() {
 void visualizePerformance() {
     char *gnuplotCommand = "gnuplot -e \""
         "set terminal png size 800,600; "
-        "set output './results/compression_performance.png'; "
+        "set output './results/techniques/compression_performance.png'; "
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
         "set boxwidth 0.5; " 
         "set style fill solid; "
-        "plot './results/performance.txt' using 2:xtic(1) with boxes notitle;\""; 
+        "plot './results/techniques/performance.txt' using 2:xtic(1) with boxes notitle;\""; 
 
     system(gnuplotCommand);
 }
@@ -129,12 +129,12 @@ void visualizePerformance() {
 void visualizePerformanceLineChart() {
     char *gnuplotCommand = "gnuplot -e \""
         "set terminal png size 800,600; "
-        "set output './results/compression_performance_line.png'; " 
+        "set output './results/techniques/compression_performance_line.png'; " 
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
         "set grid; "
         "set key outside; "
-        "plot './results/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
+        "plot './results/techniques/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
     system(gnuplotCommand);
 }

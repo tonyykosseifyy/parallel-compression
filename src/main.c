@@ -24,14 +24,20 @@ int main(int argc, char **argv) {
 
     clearPerformanceFile();
 
-    compressSequentially(argv[1], argv[2]); // 1 minutes 45 seconds 130 files
-    compressionNProcesses(argv[1], argv[2]); // 33 seconds 130 files 
+    // compressSequentially(argv[1], argv[2]); // 1 minutes 45 seconds 130 files
+    // compressionNProcesses(argv[1], argv[2]); // 33 seconds 130 files 
     compressWithNBCores(argv[1], argv[2]);  // 19 seconds 130 files
-    compressInBatches(argv[1], argv[2]); // 19 seconds 130 files
+    compressWithNBCores(argv[1], argv[2]);
+    compressInBatches(argv[1], argv[2], 0); // 19 seconds 130 files
 
     visualizePerformance();
     visualizePerformanceLineChart();
 
+
+    // compress and visulize performance for 1, 2, 3, 4, 5, 6, 7, 8 cores
+    for (int i = 1; i <= 8; i++) {
+        compressInBatches(argv[1], argv[2], i);
+    }
 
     return 0;
 }
