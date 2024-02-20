@@ -1,0 +1,4 @@
+sequential 106.000000
+parallel_N_processes 60.000000
+parallel_NB_cores 22.000000
+parallel_batches 20.000000

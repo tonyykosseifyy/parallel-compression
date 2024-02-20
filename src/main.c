@@ -28,6 +28,8 @@ int main(int argc, char **argv) {
     // compressInBatches(argv[1], argv[2]); // 19 seconds 130 files
 
     visualizePerformance();
+    visualizePerformanceLineChart();
+
 
     return 0;
 }

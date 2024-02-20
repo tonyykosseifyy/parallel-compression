@@ -95,7 +95,7 @@ void formatTime(double totalTime) {
 }
 
 void writePerformance(char *techniqueName, double totalTime) {
-    FILE *file = fopen("performance.txt", "a");
+    FILE *file = fopen("./results/performance.txt", "a");
     fprintf(file, "%s: %f\n", techniqueName, totalTime);
     fclose(file);
 }
@@ -103,13 +103,30 @@ void writePerformance(char *techniqueName, double totalTime) {
 void visualizePerformance() {
     char *gnuplotCommand = "gnuplot -e \""
         "set terminal png size 800,600; "
-        "set output 'compression_performance.png'; "
+        "set output './results/compression_performance.png'; "
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
-        "set style data histograms; "
+        "set boxwidth 0.5; " // Adjust the width of the histogram bars
         "set style fill solid; "
-        "plot 'compression_data.txt' using 2:xtic(1) title 'Time';\"";
+        "set xtics rotate by -45; " // Rotate xtics for better visibility
+        "plot './results/performance.txt' using 2:xtic(1) with boxes notitle;\""; // Use 'with boxes' for histograms
+
+    system(gnuplotCommand);
+}
+
+// Function to Generate a Line Chart
+void visualizePerformanceLineChart() {
+    char *gnuplotCommand = "gnuplot -e \""
+        "set terminal png size 800,600; "
+        "set output './results/compression_performance_line.png'; " // Output file in /results
+        "set title 'Compression Performance'; "
+        "set xlabel 'Compression Technique'; "
+        "set ylabel 'Time (Seconds)'; "
+        "set xtics rotate by -45; "
+        "set grid; "
+        "set key outside; "
+        "plot './results/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; // Data file in /results
 
     system(gnuplotCommand);
 }

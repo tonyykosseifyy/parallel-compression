@@ -23,5 +23,6 @@ void cleanup(char **filesList);
 void formatTime(double totalTime);
 void writePerformance(char *techniqueName, double totalTime);
 void visualizePerformance();
+void visualizePerformanceLineChart();
 
 #endif 
