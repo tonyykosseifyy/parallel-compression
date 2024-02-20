@@ -24,7 +24,7 @@ void compressSequentially(char *inputDir, char *outputDir) {
     formatTime(totalTime);
 
 
-    writePerformance("sequential", totalTime);
+    writePerformance("Sequential", totalTime);
 
     cleanup(filesList);
 }

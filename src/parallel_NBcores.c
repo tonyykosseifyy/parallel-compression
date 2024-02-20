@@ -42,7 +42,7 @@ void compressWithNBCores(const char *inputDir, const char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime); 
 
-    writePerformance("parallel_NBcores", totalTime);
+    writePerformance("8_CORES", totalTime);
 
     // Cleanup
     cleanup(filesList); // Assuming cleanup properly frees the filesList

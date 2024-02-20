@@ -18,7 +18,7 @@ void compressInBatches(char *inputDir, const char *outputDir) {
 
     for (int i = 0; i < NB_CORES; ++i) {
         pid_t pid = fork();
-        if (pid == 0) { // Child process
+        if (pid == 0) { 
             int start = i * filesPerCore + (i < extraFiles ? i : extraFiles);
             int end = start + filesPerCore + (i < extraFiles ? 1 : 0);
             compressMultipleFiles(filesList, start, end, outputDir);
@@ -41,7 +41,7 @@ void compressInBatches(char *inputDir, const char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime);
 
-    writePerformance("parallel_batches", totalTime);
+    writePerformance("Batches", totalTime);
 
     cleanup(filesList);
 

@@ -100,6 +100,17 @@ void writePerformance(char *techniqueName, double totalTime) {
     fclose(file);
 }
 
+void clearPerformanceFile() {
+    FILE *file = fopen("./results/performance.txt", "w");
+    if (file == NULL) {
+        perror("Error clearing performance.txt");
+        return;
+    }
+    // Closing the file immediately clears its contents
+    fclose(file);
+}
+
+
 void visualizePerformance() {
     char *gnuplotCommand = "gnuplot -e \""
         "set terminal png size 800,600; "
@@ -109,7 +120,6 @@ void visualizePerformance() {
         "set ylabel 'Time (Seconds)'; "
         "set boxwidth 0.5; " 
         "set style fill solid; "
-        "set xtics rotate by -45; " 
         "plot './results/performance.txt' using 2:xtic(1) with boxes notitle;\""; 
 
     system(gnuplotCommand);
@@ -123,10 +133,8 @@ void visualizePerformanceLineChart() {
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
-        "set xtics rotate by -45; "
         "set grid; "
         "set key outside; "
         "plot './results/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
-
     system(gnuplotCommand);
 }

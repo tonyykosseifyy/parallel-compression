@@ -24,5 +24,6 @@ void formatTime(double totalTime);
 void writePerformance(char *techniqueName, double totalTime);
 void visualizePerformance();
 void visualizePerformanceLineChart();
+void clearPerformanceFile();
 
 #endif 
