@@ -94,3 +94,8 @@ void formatTime(double totalTime) {
     printf("%d minutes %d seconds\n", minutes, seconds);
 }
 
+void *writePerformance(char *techniqueName, double totalTime) {
+    FILE *file = fopen("performance.txt", "a");
+    fprintf(file, "%s: %f\n", techniqueName, totalTime);
+    fclose(file);
+}
