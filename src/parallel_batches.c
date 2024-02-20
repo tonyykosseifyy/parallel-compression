@@ -14,7 +14,7 @@ void compressInBatches(char *inputDir, const char *outputDir) {
     struct timeval startTime, endTime;
     gettimeofday(&startTime, NULL);
 
-    printf("Compressing with NB CORES = %d Batches\n", NB_CORES);
+    printf("Compressing with NB CORES = %d in Batches\n", NB_CORES);
 
     for (int i = 0; i < NB_CORES; ++i) {
         pid_t pid = fork();
@@ -42,7 +42,7 @@ void compressInBatches(char *inputDir, const char *outputDir) {
     formatTime(totalTime);
 
     writePerformance("parallel_batches", totalTime);
-    
+
     cleanup(filesList);
 
 }
