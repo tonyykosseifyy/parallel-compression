@@ -107,10 +107,10 @@ void visualizePerformance() {
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
-        "set boxwidth 0.5; " // Adjust the width of the histogram bars
+        "set boxwidth 0.5; " 
         "set style fill solid; "
-        "set xtics rotate by -45; " // Rotate xtics for better visibility
-        "plot './results/performance.txt' using 2:xtic(1) with boxes notitle;\""; // Use 'with boxes' for histograms
+        "set xtics rotate by -45; " 
+        "plot './results/performance.txt' using 2:xtic(1) with boxes notitle;\""; 
 
     system(gnuplotCommand);
 }
@@ -119,14 +119,14 @@ void visualizePerformance() {
 void visualizePerformanceLineChart() {
     char *gnuplotCommand = "gnuplot -e \""
         "set terminal png size 800,600; "
-        "set output './results/compression_performance_line.png'; " // Output file in /results
+        "set output './results/compression_performance_line.png'; " 
         "set title 'Compression Performance'; "
         "set xlabel 'Compression Technique'; "
         "set ylabel 'Time (Seconds)'; "
         "set xtics rotate by -45; "
         "set grid; "
         "set key outside; "
-        "plot './results/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; // Data file in /results
+        "plot './results/performance.txt' using 2:xtic(1) with linespoints title 'Time';\""; 
 
     system(gnuplotCommand);
 }
