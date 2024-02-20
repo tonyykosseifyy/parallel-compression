@@ -11,6 +11,7 @@
 #include <libgen.h> 
 #include <pthread.h>
 #include "compressions.h"
+#include <stdbool.h>
 
 
 int getNumCPUs();
@@ -21,9 +22,9 @@ void createDirectory(const char *path);
 void compressFile(const char *inputFilePath, const char *outputDir, int index);
 void cleanup(char **filesList);
 void formatTime(double totalTime);
-void writePerformance(char *techniqueName, double totalTime);
+void writePerformance(char *techniqueName, double totalTime, char *file_path);
+void clearPerformanceFile(char *file_path);
 void visualizePerformance();
 void visualizePerformanceLineChart();
-void clearPerformanceFile();
 
 #endif 

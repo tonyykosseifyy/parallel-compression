@@ -36,7 +36,8 @@ void compressionNProcesses(char *inputDir, const char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime); 
 
-    writePerformance("N_processes", totalTime);
+    char *performance_path = "./results/techniques/performance.txt";
+    writePerformance("N_Processes", totalTime, performance_path);
 
     // Cleanup
     free(pids);

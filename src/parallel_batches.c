@@ -1,10 +1,14 @@
 #include "headers.h" 
 
 void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir);
+char* concat(int NB_CORES) ;
 
 void compressInBatches(char *inputDir, const char *outputDir, int NB_CORES) {
     int totalFiles = countFiles(inputDir);
     char **filesList = listFiles(inputDir);
+
+    bool testing_many_cores = NB_CORES != 0 ? true : false;
+    char *performance_path = !testing_many_cores ? "./results/techniques/performance.txt" : "./results/cores/performance.txt"; 
 
     NB_CORES =  NB_CORES != 0 ? NB_CORES : sysconf(_SC_NPROCESSORS_ONLN);
 
@@ -41,14 +45,31 @@ void compressInBatches(char *inputDir, const char *outputDir, int NB_CORES) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime);
 
-    writePerformance("Batches", totalTime);
+    char* coresString = concat(NB_CORES);
 
+    if (testing_many_cores == true) {
+        writePerformance(coresString, totalTime, performance_path);
+        free(coresString);
+    } else {
+        writePerformance("Batches", totalTime, performance_path);
+    }
     cleanup(filesList);
-
 }
 
 void compressMultipleFiles(char **filesList, int startIdx, int endIdx, const char *outputDir) {
     for (int i = startIdx; i < endIdx; ++i) {
         compressFile(filesList[i], outputDir, i);
     }
+}
+
+
+char* concat(int NB_CORES) {
+    char cores_str[] = " cores";
+    // Calculate needed size (+1 for null terminator)
+    int size = snprintf(NULL, 0, "%d%s", NB_CORES, cores_str) + 1;
+    char *result = malloc(size); // Allocate memory
+    if (result != NULL) { // Check allocation success
+        snprintf(result, size, "%d%s", NB_CORES, cores_str);
+    }
+    return result;
 }

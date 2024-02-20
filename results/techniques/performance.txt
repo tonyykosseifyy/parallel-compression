@@ -1,4 +1,4 @@
-Sequential: 52.000000
-N_processes: 10.000000
-8_CORES: 10.000000
-Batches: 10.000000
+Sequential: 15.000000
+N_Processes: 3.000000
+8_CORES: 3.000000
+Batches: 3.000000

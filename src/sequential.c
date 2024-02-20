@@ -23,8 +23,9 @@ void compressSequentially(char *inputDir, char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime);
 
-
-    writePerformance("Sequential", totalTime);
+    char *performance_path = "./results/techniques/performance.txt";
+    
+    writePerformance("Sequential", totalTime, performance_path);
 
     cleanup(filesList);
 }

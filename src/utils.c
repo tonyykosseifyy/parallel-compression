@@ -93,15 +93,15 @@ void formatTime(double totalTime) {
     int seconds = (int)totalTime % 60; 
     printf("%d minutes %d seconds\n\n", minutes, seconds);
 }
-
-void writePerformance(char *techniqueName, double totalTime) {
-    FILE *file = fopen("./results/performance.txt", "a");
+// /results/performance.txt
+void writePerformance(char *techniqueName, double totalTime, char *file_path) {
+    FILE *file = fopen(file_path, "a");
     fprintf(file, "%s: %f\n", techniqueName, totalTime);
     fclose(file);
 }
 
-void clearPerformanceFile() {
-    FILE *file = fopen("./results/performance.txt", "w");
+void clearPerformanceFile(char *file_path) {
+    FILE *file = fopen(file_path, "w");
     if (file == NULL) {
         perror("Error clearing performance.txt");
         return;
