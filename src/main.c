@@ -27,7 +27,6 @@ int main(int argc, char **argv) {
     compressWithNBCores(argv[1], argv[2]);  // 19 seconds 130 files
     compressInBatches(argv[1], argv[2]); // 19 seconds 130 files
 
-    
 
     return 0;
 }
