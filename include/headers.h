@@ -21,5 +21,6 @@ void createDirectory(const char *path);
 void compressFile(const char *inputFilePath, const char *outputDir, int index);
 void cleanup(char **filesList);
 void formatTime(double totalTime);
+void *writePerformance(char *techniqueName, double totalTime);
 
 #endif 

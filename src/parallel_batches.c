@@ -41,6 +41,8 @@ void compressInBatches(char *inputDir, const char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime);
 
+    writePerformance("parallel_batches", totalTime);
+    
     cleanup(filesList);
 
 }

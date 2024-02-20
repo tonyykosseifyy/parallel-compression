@@ -36,6 +36,8 @@ void compressionNProcesses(char *inputDir, const char *outputDir) {
     printf("Total time taken to compress all files: ");
     formatTime(totalTime); 
 
+    writePerformance("parallel N processes", totalTime);
+
     // Cleanup
     free(pids);
     cleanup(filesList); 
